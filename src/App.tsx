@@ -1,22 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { juhuu } from "./juhuuClass";
 
 function App() {
+  const handleFetchLocations = async () => {
+    // get all locations
+    const query = await juhuu.locations.list({});
+
+    if (query.ok === true) {
+      console.log(query.data);
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <button onClick={handleFetchLocations}>
+          Fetch locations (check the console logs)
+        </button>
         <a
-          className="App-link"
-          href="https://reactjs.org"
+          href="https://identity.juhuu.app/auth?refUrl=localhost:3000"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
         >
-          Learn React
+          Login or Signup using JUHUU Identity
         </a>
       </header>
     </div>
