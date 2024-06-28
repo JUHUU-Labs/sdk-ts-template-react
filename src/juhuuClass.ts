@@ -23,7 +23,7 @@ class ExtendedJuhuu extends Juhuu {
 
   async listProducts(params: Record<string, any>): Promise<any> {
     try {
-      const response = await fetch("/api/products", {
+      const response = await fetch("https://api.juhuu.app/v1/products", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +40,7 @@ class ExtendedJuhuu extends Juhuu {
 
   async getProduct(id: string): Promise<any> {
     try {
-      const response = await fetch(`/api/products/${id}`, {
+      const response = await fetch(`https://api.juhuu.app/v1/products/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
