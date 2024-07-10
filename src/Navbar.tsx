@@ -1,12 +1,20 @@
 import { useEffect } from "react";
 import "./App.css";
 import { useUser } from "./context/UserContext";
+import { Button } from "./components/button";
+import { PlusIcon } from "@heroicons/react/16/solid";
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownItem,
+  DropdownMenu,
+} from "./components/dropdown";
 
 function Navbar() {
   const { user, logout, accountSetupCompleted } = useUser();
 
   useEffect(() => {
-    console.log("userrrrr", user);
+    console.log("user changed:", user);
   }, [user]);
 
   async function handleLogout() {
@@ -29,13 +37,23 @@ function Navbar() {
       >
         Login or Signup using JUHUU Identity
       </a>
-      <button onClick={handleLogout}>Logout</button>
+      <Button onClick={handleLogout}>Logout</Button>
       {accountSetupCompleted ? (
         <p>Account setup completed</p>
       ) : (
         <p>Account setup not completed</p>
       )}
       <p>User: {user?.name}</p>
+      <Dropdown>
+        <DropdownButton outline>
+          <PlusIcon /> Options
+        </DropdownButton>
+        <DropdownMenu>
+          <DropdownItem href="/users/1">View</DropdownItem>
+          <DropdownItem href="/users/1/edit">Edit</DropdownItem>
+          <DropdownItem>Delete</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
     </header>
   );
 }
